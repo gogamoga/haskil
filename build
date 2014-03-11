@@ -1,0 +1,16 @@
+ghc --make site.hs
+./site clean
+mkdir _site
+cd _site
+git init
+git remote add origin ../.git
+git pull origin master
+git rm -rf .
+git commit -a -m "Cleanup"
+cd ..
+./site build
+cd _site
+git add .
+git commit -a -m "Deploy"
+git push origin master
+cd ..
